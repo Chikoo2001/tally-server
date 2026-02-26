@@ -21,5 +21,9 @@ app.use('/api/gst', require('./routes/gst'));
 
 app.get('/api/health', (req, res) => res.json({ status: 'OK' }));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+module.exports = app;
